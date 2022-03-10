@@ -1,0 +1,40 @@
+#uiBar{ 
+    position: fixed;
+    width: 100vw;
+}
+#uiBar ul.uiBar{
+    width: 90vw;
+    display: flex; 
+    background-color: rgba(255, 255, 255, 0.911);
+    padding-left: 3rem ;
+    border-radius: 0px 5px 5px 0px;
+    box-shadow: 5px 5px 10px black;
+}
+
+.targetLi{
+    margin:0 1rem 0 1rem ;
+    width: fit-content;
+    background-color: transparent;
+    color: black;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    white-space: nowrap;
+    column-gap: .5rem;
+    cursor: pointer;
+
+}
+.targetLi:hover{
+    background-color: transparent;
+}
+.indicator{
+    width: 1rem;
+    height: 1rem;
+    background-color: rgb(255, 47, 47);
+    border-radius: 50px;
+    transition: background-color 1s;
+}
+.indicator.found{
+    background-color: rgb(142, 255, 108);
+}
+
