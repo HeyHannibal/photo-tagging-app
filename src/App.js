@@ -3,12 +3,7 @@ import { useRef, useState, useEffect } from "react";
 // firebase
 import { initializeApp } from "firebase/app";
 import { getDoc, getFirestore } from "firebase/firestore";
-import {
-  collection,
-  doc,
-  addDoc,
-  getDocs,
-} from "firebase/firestore";
+import { collection, doc, addDoc, getDocs } from "firebase/firestore";
 
 // components
 import img1 from "./assets/5.jpg";
@@ -17,7 +12,6 @@ import UI from "./components/ui";
 import Viewfinder from "./components/viewfinder";
 import LoadAnimation from "./components/animations";
 import Timer from "./components/timer";
-
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -32,7 +26,6 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 function App() {
-  
   async function getCollection(name) {
     let getCollection = await getDocs(collection(db, name));
     let allDocs = getCollection.docs.map((doc) => {
@@ -40,19 +33,19 @@ function App() {
     });
     return allDocs;
   }
- async function startStopTimer(id, end) {
+  async function startStopTimer(id, end) {
     if (arguments.length === 0) {
-    let userRef = await addDoc(collection(db, "myTime"), {
+      let userRef = await addDoc(collection(db, "myTime"), {
         startTimestamp: new Date().getTime(),
       });
       setTimerID(userRef._key.path.segments[1]);
-    } 
-     else {
+    } else {
       let start = await (await getDoc(doc(db, "myTime", id))).data()
         .startTimestamp;
       setUserTimeScore((end - start) / 1000);
-  }}
-  
+    }
+  }
+
   const [round, setRound] = useState(0);
   const [found, setFound] = useState([]);
   const [targets, setTargets] = useState(null);
@@ -60,7 +53,6 @@ function App() {
   const [userTimeScore, setUserTimeScore] = useState(null);
   const [openFrame, setOpenFrame] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [foundOne, setFoundOne] = useState(false);
   const [imgWidth, setImgWidth] = useState(0);
   const [X, setX] = useState(0);
   const [Y, setY] = useState(0);
@@ -94,7 +86,7 @@ function App() {
           Object.assign(item, getRange(item.coords[0], item.coords[1]))
         );
       }
-      console.log(targets)
+      console.log(targets);
       setTargets(targets);
     }
   }, [isLoading, found, round]);
